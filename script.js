@@ -220,7 +220,6 @@ class InteractiveBook {
         }
 
         // Render chapter content and questions
-        // Modified to display chapter.content.passage directly and remove 'Lesson', 'Examples'
         this.bookContent.innerHTML = `
             <div class="chapter active">
                 <h2>${chapter.title}</h2>
@@ -235,12 +234,28 @@ class InteractiveBook {
                 <div class="questions">
                     ${chapter.questions.map((q, i) => this.renderQuestion(q, index, i)).join('')}
                 </div>
+                <div class="chapter-actions">
+                    <button class="btn check-chapter-btn" id="checkChapterBtn" onclick="book.checkCurrentChapterAnswers()">Check Chapter Answers</button>
+                </div>
             </div>
         `;
 
         this.initializeDragDrop(); // Re-initialize drag-drop listeners for new content
         this.updateProgress(); // Update progress bar
         this.applyUserAnswersToChapter(); // Apply previously saved answers to the rendered chapter
+
+        // After rendering, check if the chapter has already been checked and disable the button
+        const chapterAlreadyChecked = chapter.questions.every((q, i) => {
+            const questionId = `q_${this.currentChapter}_${i}`;
+            return this.userAnswers[questionId] !== undefined; // Check if an answer exists for all questions
+        });
+
+        if (chapterAlreadyChecked) {
+            const checkBtn = document.getElementById('checkChapterBtn');
+            if (checkBtn) {
+                checkBtn.disabled = true;
+            }
+        }
 
         if (saveProgressAfterShow) {
             this.saveProgress(); // Save progress after showing the chapter
@@ -249,6 +264,7 @@ class InteractiveBook {
 
     /**
      * Renders a single question based on its type.
+     * Removed individual "Check Answer" buttons.
      * @param {object} question - The question object from content.json.
      * @param {number} chapterIndex - The index of the current chapter.
      * @param {number} questionIndex - The index of the question within the chapter.
@@ -273,7 +289,6 @@ class InteractiveBook {
                                 </div>`
                             ).join('')}
                         </div>
-                        <button class="btn" onclick="book.checkAnswer('${questionId}')">Check Answer</button>
                         <div class="feedback" id="feedback_${questionId}"></div>
                     </div>
                 `;
@@ -285,7 +300,6 @@ class InteractiveBook {
                         <div class="question">${question.question}</div>
                         <input type="text" id="input_${questionId}" placeholder="Type your answer here..."
                                value="${userAnswer !== undefined ? userAnswer : ''}">
-                        <button class="btn" onclick="book.checkFillInBlank('${questionId}')">Check Answer</button>
                         <div class="feedback" id="feedback_${questionId}"></div>
                     </div>
                 `;
@@ -314,15 +328,12 @@ class InteractiveBook {
                                 ).join('')}
                             </div>
                         </div>
-                        <button class="btn" onclick="book.checkDragDrop('${questionId}')">Check Answer</button>
                         <div class="feedback" id="feedback_${questionId}"></div>
                     </div>
                 `;
                 break;
 
             case 'reading-passage':
-                // Removed the inner 'lesson-content' block for reading passage questions
-                // as the main passage is now displayed at the chapter level.
                 questionHtml = `
                     <div class="question-container">
                         <div class="question">${question.question}</div>
@@ -335,7 +346,6 @@ class InteractiveBook {
                                 </div>`
                             ).join('')}
                         </div>
-                        <button class="btn" onclick="book.checkAnswer('${questionId}')">Check Answer</button>
                         <div class="feedback" id="feedback_${questionId}"></div>
                     </div>
                 `;
@@ -349,24 +359,145 @@ class InteractiveBook {
     }
 
     /**
+     * Checks all answers for the current chapter.
+     * This replaces individual "Check Answer" buttons per question.
+     */
+    checkCurrentChapterAnswers() {
+        const chapter = this.chapters[this.currentChapter];
+        let allQuestionsAttempted = true; // Flag to ensure all questions in the chapter have an attempt
+
+        chapter.questions.forEach((q, i) => {
+            const questionId = `q_${this.currentChapter}_${i}`;
+            const feedbackElement = document.getElementById(`feedback_${questionId}`);
+            let userAnswer;
+            let isCorrect;
+            let questionAttempted = true; // Flag for individual question attempt
+
+            if (q.type === 'multiple-choice' || q.type === 'reading-passage') {
+                userAnswer = this.userAnswers[questionId]; // Get the selected option index
+                if (userAnswer === undefined || this.userAnswers[questionId] === 'correct_already') {
+                    // If already answered correctly or not attempted, skip direct re-evaluation
+                    // but mark as not attempted if no answer is present.
+                    if (userAnswer === undefined) {
+                        feedbackElement.innerHTML = '<div class="feedback incorrect">Please select an answer.</div>';
+                        questionAttempted = false;
+                    }
+                    return; 
+                }
+                isCorrect = (Array.isArray(q.correct) && q.correct.includes(userAnswer)) || (!Array.isArray(q.correct) && userAnswer === q.correct);
+                
+                const container = feedbackElement.closest('.question-container');
+                const options = container.querySelectorAll('.option');
+                options.forEach((option, index) => {
+                    option.classList.remove('selected');
+                    if (Array.isArray(q.correct)) {
+                        if (q.correct.includes(index)) {
+                            option.classList.add('correct');
+                        } else if (index === userAnswer && !isCorrect) {
+                            option.classList.add('incorrect');
+                        }
+                    } else {
+                        if (index === q.correct) {
+                            option.classList.add('correct');
+                        } else if (index === userAnswer && !isCorrect) {
+                            option.classList.add('incorrect');
+                        }
+                    }
+                    option.style.pointerEvents = 'none'; // Disable interaction
+                });
+
+            } else if (q.type === 'fill-in-blank') {
+                const inputElement = document.getElementById(`input_${questionId}`);
+                userAnswer = inputElement.value.trim();
+                if (!userAnswer || this.userAnswers[questionId] === 'correct_already') {
+                    if (!userAnswer) {
+                        feedbackElement.innerHTML = '<div class="feedback incorrect">Please enter an answer.</div>';
+                        questionAttempted = false;
+                    }
+                    return;
+                }
+                isCorrect = (Array.isArray(q.correct) && q.correct.map(s => s.toLowerCase()).includes(userAnswer.toLowerCase())) || (!Array.isArray(q.correct) && userAnswer.toLowerCase() === q.correct.toLowerCase());
+                inputElement.disabled = true; // Disable input field
+
+            } else if (q.type === 'drag-drop') {
+                const dropZones = document.querySelectorAll(`#dragdrop_${questionId} .drop-zone`);
+                userAnswer = Array.from(dropZones).map(zone => zone.textContent.trim());
+                if (userAnswer.some(text => text === 'Drop here' || text === '') || this.userAnswers[questionId] === 'correct_already') {
+                     if (userAnswer.some(text => text === 'Drop here' || text === '')) {
+                        feedbackElement.innerHTML = '<div class="feedback incorrect">Please fill all positions.</div>';
+                        questionAttempted = false;
+                    }
+                    return;
+                }
+                isCorrect = JSON.stringify(userAnswer) === JSON.stringify(q.correct);
+                
+                dropZones.forEach((zone, index) => {
+                    if (zone.textContent.trim() === q.correct[index]) {
+                        zone.style.backgroundColor = '#c6f6d5';
+                        zone.style.borderColor = '#48bb78';
+                    } else {
+                        zone.style.backgroundColor = '#fed7d7';
+                        zone.style.borderColor = '#f56565';
+                    }
+                    zone.style.pointerEvents = 'none';
+                });
+                const dragItemsContainer = document.querySelector(`#dragdrop_${questionId} .drag-items`);
+                if (dragItemsContainer) {
+                    dragItemsContainer.style.pointerEvents = 'none';
+                }
+            }
+
+            // If question was not attempted, set overall flag to false
+            if (!questionAttempted) {
+                allQuestionsAttempted = false;
+            } else {
+                // Common feedback and stats update for all question types
+                feedbackElement.innerHTML = `
+                    <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${q.feedback}
+                        ${q.type === 'drag-drop' ? `<br><strong>Correct order:</strong> ${q.correct.join(' → ')}` : ''}
+                    </div>
+                `;
+
+                if (isCorrect && this.userAnswers[questionId] !== 'correct_already') {
+                    this.stats.correctAnswers++;
+                    this.userAnswers[questionId] = 'correct_already';
+                } else if (!isCorrect) {
+                    this.userAnswers[questionId] = userAnswer;
+                }
+                if (isCorrect) showConfetti();
+            }
+        });
+
+        // After all questions in the chapter are processed, disable the button if all were attempted
+        if (allQuestionsAttempted) {
+             document.getElementById('checkChapterBtn').disabled = true;
+        }
+        this.updateStats();
+        this.saveProgress();
+        this.checkCompletionAndShowScore();
+    }
+
+    /**
      * Applies previously saved user answers to the currently rendered chapter.
      * This ensures that when a user navigates back to a chapter, their answers are displayed.
      */
     applyUserAnswersToChapter() {
         const chapterQuestions = this.chapters[this.currentChapter].questions;
+        let chapterFullyAnswered = true; // Track if all questions in this chapter have been answered
+
         chapterQuestions.forEach((q, i) => {
             const questionId = `q_${this.currentChapter}_${i}`;
             const userAnswer = this.userAnswers[questionId];
+            const feedbackElement = document.getElementById(`feedback_${questionId}`);
+            
             if (userAnswer !== undefined) {
-                const feedbackElement = document.getElementById(`feedback_${questionId}`);
                 if (feedbackElement) {
-                    // Re-check answer to apply correct/incorrect styling and feedback
-                    // This is a simplified re-application; a more robust solution might
-                    // store the checked state and feedback directly.
+                    let isCorrect;
                     if (q.type === 'multiple-choice' || q.type === 'reading-passage') {
                         const container = feedbackElement.closest('.question-container');
                         const options = container.querySelectorAll('.option');
-                        const isCorrect = (Array.isArray(q.correct) && q.correct.includes(userAnswer)) || (!Array.isArray(q.correct) && userAnswer === q.correct);
+                        isCorrect = (Array.isArray(q.correct) && q.correct.includes(userAnswer)) || (!Array.isArray(q.correct) && userAnswer === q.correct);
 
                         options.forEach((option, index) => {
                             option.classList.remove('selected');
@@ -377,29 +508,15 @@ class InteractiveBook {
                             }
                             option.style.pointerEvents = 'none'; // Disable interaction
                         });
-                        container.querySelector('.btn').disabled = true;
-                        feedbackElement.innerHTML = `
-                            <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                                ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${q.feedback}
-                            </div>
-                        `;
                     } else if (q.type === 'fill-in-blank') {
                         const inputElement = document.getElementById(`input_${questionId}`);
                         if (inputElement) {
                             inputElement.value = userAnswer;
                             inputElement.disabled = true;
-                            const isCorrect = (Array.isArray(q.correct) && q.correct.map(s => s.toLowerCase()).includes(userAnswer.toLowerCase())) || (!Array.isArray(q.correct) && userAnswer.toLowerCase() === q.correct.toLowerCase());
-                            feedbackElement.innerHTML = `
-                                <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                                    ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${q.feedback}
-                                </div>
-                            `;
-                            feedbackElement.closest('.question-container').querySelector('.btn').disabled = true;
+                            isCorrect = (Array.isArray(q.correct) && q.correct.map(s => s.toLowerCase()).includes(userAnswer.toLowerCase())) || (!Array.isArray(q.correct) && userAnswer.toLowerCase() === q.correct.toLowerCase());
                         }
                     } else if (q.type === 'drag-drop') {
-                        // Drag-drop re-application is handled during renderQuestion
-                        // but we need to disable the button and show feedback.
-                        const isCorrect = JSON.stringify(userAnswer.dropZones) === JSON.stringify(q.correct);
+                        isCorrect = JSON.stringify(userAnswer.dropZones) === JSON.stringify(q.correct);
                         const dropZones = document.querySelectorAll(`#dragdrop_${questionId} .drop-zone`);
                         dropZones.forEach((zone, index) => {
                             if (zone.textContent.trim() === q.correct[index]) {
@@ -409,18 +526,32 @@ class InteractiveBook {
                                 zone.style.backgroundColor = '#fed7d7';
                                 zone.style.borderColor = '#f56565';
                             }
+                            zone.style.pointerEvents = 'none';
                         });
-                        feedbackElement.innerHTML = `
-                            <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                                ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${q.feedback}
-                                <br><strong>Correct order:</strong> ${q.correct.join(' → ')}
-                            </div>
-                        `;
-                        feedbackElement.closest('.question-container').querySelector('.btn').disabled = true;
+                        const dragItemsContainer = document.querySelector(`#dragdrop_${questionId} .drag-items`);
+                        if (dragItemsContainer) {
+                            dragItemsContainer.style.pointerEvents = 'none';
+                        }
                     }
+                    
+                    // Display feedback for already answered questions
+                    feedbackElement.innerHTML = `
+                        <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                            ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${q.feedback}
+                            ${q.type === 'drag-drop' ? `<br><strong>Correct order:</strong> ${q.correct.join(' → ')}` : ''}
+                        </div>
+                    `;
                 }
+            } else {
+                chapterFullyAnswered = false; // At least one question in this chapter is not answered
             }
         });
+
+        // Disable the chapter's "Check Chapter Answers" button if all questions in it are answered
+        const checkBtn = document.getElementById('checkChapterBtn');
+        if (checkBtn) {
+            checkBtn.disabled = chapterFullyAnswered;
+        }
     }
 
     /**
@@ -433,8 +564,6 @@ class InteractiveBook {
         const options = container.querySelectorAll('.option');
 
         // For single-choice, remove 'selected' from all, then add to the clicked one.
-        // If multiple correct answers were allowed, this logic would need to change
-        // to allow toggling 'selected' for multiple options (e.g., using checkboxes).
         options.forEach(option => option.classList.remove('selected'));
         options[optionIndex].classList.add('selected');
 
@@ -442,297 +571,45 @@ class InteractiveBook {
     }
 
     /**
-     * Checks the answer for multiple-choice and reading-passage questions.
-     * @param {string} questionId - The ID of the question.
-     */
-    checkAnswer(questionId) {
-        const [chapterIndex, questionIndex] = questionId.split('_').slice(1).map(Number);
-        const question = this.chapters[chapterIndex].questions[questionIndex];
-        const userAnswer = this.userAnswers[questionId];
-        const feedbackElement = document.getElementById(`feedback_${questionId}`);
-        
-        if (userAnswer === undefined) {
-            feedbackElement.innerHTML = '<div class="feedback incorrect">Please select an answer first.</div>';
-            return;
-        }
-        
-        // Determine if the answer is correct.
-        // Handles both single correct answer (number) and multiple correct answers (array of numbers).
-        let isCorrect;
-        if (Array.isArray(question.correct)) {
-            // If question.correct is an array, all selected options must match all correct options.
-            // This would require changing `selectOption` to handle multiple selections.
-            // For now, assuming `question.correct` is a single index for multiple-choice.
-            isCorrect = question.correct.includes(userAnswer);
-        } else {
-            isCorrect = userAnswer === question.correct;
-        }
-        
-        // Update visual feedback
-        const container = feedbackElement.closest('.question-container');
-        const options = container.querySelectorAll('.option');
-        
-        options.forEach((option, index) => {
-            option.classList.remove('selected'); // Remove selected class
-            if (Array.isArray(question.correct)) {
-                // If multiple correct answers, highlight all correct ones
-                if (question.correct.includes(index)) {
-                    option.classList.add('correct');
-                } else if (index === userAnswer && !isCorrect) {
-                    option.classList.add('incorrect');
-                }
-            } else {
-                // Single correct answer
-                if (index === question.correct) {
-                    option.classList.add('correct');
-                } else if (index === userAnswer && !isCorrect) {
-                    option.classList.add('incorrect');
-                }
-            }
-            option.style.pointerEvents = 'none'; // Disable further interaction
-        });
-        
-        // Show feedback message
-        feedbackElement.innerHTML = `
-            <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${question.feedback}
-            </div>
-        `;
-        
-        // Update stats if the answer was correct and not previously answered correctly
-        // We only count correct answers once per question.
-        if (isCorrect && this.userAnswers[questionId] !== 'correct_already') {
-            this.stats.correctAnswers++;
-            this.userAnswers[questionId] = 'correct_already'; // Mark as correctly answered
-        } else if (!isCorrect) {
-            // If incorrect, store the user's incorrect answer to re-display
-            this.userAnswers[questionId] = userAnswer;
-        }
-
-        this.updateStats(); // Update global statistics
-        container.querySelector('.btn').disabled = true; // Disable check button
-        if (isCorrect) showConfetti(); // Show confetti for correct answers
-        this.saveProgress(); // Save progress after checking answer
-        this.checkCompletionAndShowScore(); // Check if all questions are answered
-    }
-
-    /**
-     * Checks the answer for fill-in-the-blank questions.
-     * @param {string} questionId - The ID of the question.
-     */
-    checkFillInBlank(questionId) {
-        const [chapterIndex, questionIndex] = questionId.split('_').slice(1).map(Number);
-        const question = this.chapters[chapterIndex].questions[questionIndex];
-        const inputElement = document.getElementById(`input_${questionId}`);
-        const userAnswer = inputElement.value.trim();
-        const feedbackElement = document.getElementById(`feedback_${questionId}`);
-        
-        if (!userAnswer) {
-            feedbackElement.innerHTML = '<div class="feedback incorrect">Please enter an answer first.</div>';
-            return;
-        }
-        
-        // Determine if the answer is correct.
-        // Handles both single correct answer (string) and multiple correct answers (array of strings).
-        let isCorrect;
-        if (Array.isArray(question.correct)) {
-            isCorrect = question.correct.map(s => s.toLowerCase()).includes(userAnswer.toLowerCase());
-        } else {
-            isCorrect = userAnswer.toLowerCase() === question.correct.toLowerCase();
-        }
-        
-        // Show feedback message
-        feedbackElement.innerHTML = `
-            <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${question.feedback}
-            </div>
-        `;
-        
-        // Update stats if the answer was correct and not previously answered correctly
-        if (isCorrect && this.userAnswers[questionId] !== 'correct_already') {
-            this.stats.correctAnswers++;
-            this.userAnswers[questionId] = 'correct_already'; // Mark as correctly answered
-        } else if (!isCorrect) {
-            // If incorrect, store the user's incorrect answer to re-display
-            this.userAnswers[questionId] = userAnswer;
-        }
-
-        this.updateStats(); // Update global statistics
-        inputElement.disabled = true; // Disable input field
-        feedbackElement.closest('.question-container').querySelector('.btn').disabled = true; // Disable check button
-        if (isCorrect) showConfetti(); // Show confetti for correct answers
-        this.saveProgress(); // Save progress after checking answer
-        this.checkCompletionAndShowScore(); // Check if all questions are answered
-    }
-
-    /**
-     * Initializes drag and drop functionality for all drag-drop questions.
-     */
-    initializeDragDrop() {
-        const dragItems = document.querySelectorAll('.drag-item');
-        const dropZones = document.querySelectorAll('.drop-zone');
-        
-        // Add event listeners for drag items
-        dragItems.forEach(item => {
-            item.addEventListener('dragstart', this.handleDragStart.bind(this));
-            item.addEventListener('dragend', this.handleDragEnd.bind(this));
-        });
-        
-        // Add event listeners for drop zones
-        dropZones.forEach(zone => {
-            zone.addEventListener('dragover', this.handleDragOver.bind(this));
-            zone.addEventListener('drop', this.handleDrop.bind(this));
-            zone.addEventListener('dragenter', this.handleDragEnter.bind(this));
-            zone.addEventListener('dragleave', this.handleDragLeave.bind(this));
-        });
-    }
-
-    /**
-     * Handles the dragstart event for draggable items.
-     * @param {Event} e - The drag event.
-     */
-    handleDragStart(e) {
-        e.dataTransfer.setData('text/plain', e.target.dataset.item); // Store the item's text content
-        e.target.classList.add('dragging');
-        // Set a custom drag image if desired
-        const img = new Image();
-        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // Transparent GIF
-        e.dataTransfer.setDragImage(img, 0, 0);
-    }
-
-    /**
-     * Handles the dragend event for draggable items.
-     * @param {Event} e - The drag event.
-     */
-    handleDragEnd(e) {
-        e.target.classList.remove('dragging');
-    }
-
-    /**
-     * Handles the dragover event for drop zones. Prevents default to allow dropping.
-     * @param {Event} e - The drag event.
-     */
-    handleDragOver(e) {
-        e.preventDefault();
-    }
-
-    /**
-     * Handles the dragenter event for drop zones. Adds visual feedback.
-     * @param {Event} e - The drag event.
-     */
-    handleDragEnter(e) {
-        e.preventDefault();
-        e.target.classList.add('drag-over');
-    }
-
-    /**
-     * Handles the dragleave event for drop zones. Removes visual feedback.
-     * @param {Event} e - The drag event.
-     */
-    handleDragLeave(e) {
-        e.target.classList.remove('drag-over');
-    }
-
-    /**
-     * Handles the drop event for drop zones. Places the dragged item into the zone.
-     * @param {Event} e - The drop event.
-     */
-    handleDrop(e) {
-        e.preventDefault();
-        const data = e.dataTransfer.getData('text/plain');
-        const dropZone = e.target.closest('.drop-zone'); // Ensure we get the drop-zone element
-        
-        if (dropZone && dropZone.textContent.trim() === 'Drop here') { // Only allow dropping into empty zones
-            dropZone.textContent = data;
-            dropZone.classList.remove('drag-over');
-            dropZone.classList.add('filled');
-            
-            // Remove the original dragged item from the drag-items list
-            const draggedItem = document.querySelector(`.drag-item.dragging[data-item="${data}"]`);
-            if (draggedItem) {
-                draggedItem.remove();
-            }
-        }
-    }
-
-    /**
-     * Checks the answer for drag-drop questions.
-     * @param {string} questionId - The ID of the question.
-     */
-    checkDragDrop(questionId) {
-        const [chapterIndex, questionIndex] = questionId.split('_').slice(1).map(Number);
-        const question = this.chapters[chapterIndex].questions[questionIndex];
-        const dropZones = document.querySelectorAll(`#dragdrop_${questionId} .drop-zone`);
-        const feedbackElement = document.getElementById(`feedback_${questionId}`);
-        
-        // Get the current order of items in the drop zones
-        const userAnswerOrder = Array.from(dropZones).map(zone => zone.textContent.trim());
-        
-        // Check if all drop zones are filled
-        if (userAnswerOrder.some(text => text === 'Drop here' || text === '')) {
-            feedbackElement.innerHTML = '<div class="feedback incorrect">Please fill all positions first.</div>';
-            return;
-        }
-        
-        // Compare with the correct order
-        const isCorrect = JSON.stringify(userAnswerOrder) === JSON.stringify(question.correct);
-        
-        // Apply visual feedback to drop zones
-        dropZones.forEach((zone, index) => {
-            if (zone.textContent.trim() === question.correct[index]) {
-                zone.style.backgroundColor = '#c6f6d5'; // Correct color
-                zone.style.borderColor = '#48bb78';
-            } else {
-                zone.style.backgroundColor = '#fed7d7'; // Incorrect color
-                zone.style.borderColor = '#f56565';
-            }
-            // Disable further dropping/dragging on this question
-            zone.style.pointerEvents = 'none';
-        });
-
-        // Disable drag items for this question
-        const dragItemsContainer = document.querySelector(`#dragdrop_${questionId} .drag-items`);
-        if (dragItemsContainer) {
-            dragItemsContainer.style.pointerEvents = 'none';
-        }
-        
-        // Show text feedback
-        feedbackElement.innerHTML = `
-            <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${question.feedback}
-                <br><strong>Correct order:</strong> ${question.correct.join(' → ')}
-            </div>
-        `;
-        
-        // Update stats if correct
-        if (isCorrect && this.userAnswers[questionId] !== 'correct_already') {
-            this.stats.correctAnswers++;
-            this.userAnswers[questionId] = 'correct_already'; // Mark as correctly answered
-        } else if (!isCorrect) {
-            // Store the current state of dropped items and remaining draggable items
-            this.userAnswers[questionId] = {
-                dropZones: userAnswerOrder,
-                droppedItems: Array.from(document.querySelectorAll(`#dragdrop_${questionId} .drag-item`)).map(item => item.dataset.item)
-            };
-        }
-        
-        this.updateStats(); // Update global statistics
-        feedbackElement.closest('.question-container').querySelector('.btn').disabled = true; // Disable check button
-        if (isCorrect) showConfetti(); // Show confetti for correct answers
-        this.saveProgress(); // Save progress after checking answer
-        this.checkCompletionAndShowScore(); // Check if all questions are answered
-    }
-
-    /**
      * Updates the displayed statistics (score, accuracy, chapters completed)
      * and the progress bar.
      */
     updateStats() {
-        const answeredQuestionsCount = Object.keys(this.userAnswers).filter(key => 
-            this.userAnswers[key] === 'correct_already' || (typeof this.userAnswers[key] === 'number') || (typeof this.userAnswers[key] === 'string') || (typeof this.userAnswers[key] === 'object' && this.userAnswers[key] !== null)
+        // Count all questions that have been attempted (not just correct ones)
+        const attemptedQuestionsCount = Object.keys(this.userAnswers).filter(key => 
+            this.userAnswers[key] !== undefined && this.userAnswers[key] !== null
         ).length;
 
-        const accuracy = answeredQuestionsCount > 0 ? Math.round((this.stats.correctAnswers / answeredQuestionsCount) * 100) : 0;
+        // Recalculate correct answers from scratch to ensure accuracy
+        let currentCorrectAnswers = 0;
+        this.chapters.forEach((chapter, chapIndex) => {
+            chapter.questions.forEach((q, qIndex) => {
+                const questionId = `q_${chapIndex}_${qIndex}`;
+                const userAnswer = this.userAnswers[questionId];
+
+                if (userAnswer === 'correct_already') {
+                    currentCorrectAnswers++;
+                } else if (userAnswer !== undefined && userAnswer !== null) {
+                    let isCorrect = false;
+                    if (q.type === 'multiple-choice' || q.type === 'reading-passage') {
+                        isCorrect = (Array.isArray(q.correct) && q.correct.includes(userAnswer)) || (!Array.isArray(q.correct) && userAnswer === q.correct);
+                    } else if (q.type === 'fill-in-blank') {
+                        isCorrect = (Array.isArray(q.correct) && q.correct.map(s => s.toLowerCase()).includes(userAnswer.toLowerCase())) || (!Array.isArray(q.correct) && userAnswer.toLowerCase() === q.correct.toLowerCase());
+                    } else if (q.type === 'drag-drop') {
+                        isCorrect = JSON.stringify(userAnswer.dropZones) === JSON.stringify(q.correct);
+                    }
+                    if (isCorrect) {
+                        currentCorrectAnswers++;
+                        // Mark as correct_already to avoid re-counting on subsequent updates
+                        this.userAnswers[questionId] = 'correct_already'; 
+                    }
+                }
+            });
+        });
+        this.stats.correctAnswers = currentCorrectAnswers;
+
+
+        const accuracy = attemptedQuestionsCount > 0 ? Math.round((this.stats.correctAnswers / attemptedQuestionsCount) * 100) : 0;
         
         this.totalScoreSpan.textContent = this.stats.correctAnswers;
         this.correctAnswersStat.textContent = this.stats.correctAnswers;
@@ -761,11 +638,14 @@ class InteractiveBook {
      * Checks if all questions have been answered and displays the final score modal.
      */
     checkCompletionAndShowScore() {
-        const answeredQuestionsCount = Object.keys(this.userAnswers).filter(key => 
-            this.userAnswers[key] === 'correct_already' || (typeof this.userAnswers[key] === 'number') || (typeof this.userAnswers[key] === 'string') || (typeof this.userAnswers[key] === 'object' && this.userAnswers[key] !== null)
+        const attemptedQuestionsCount = Object.keys(this.userAnswers).filter(key => 
+            this.userAnswers[key] !== undefined && this.userAnswers[key] !== null
         ).length;
 
-        if (answeredQuestionsCount === this.stats.totalQuestions && this.stats.totalQuestions > 0) {
+        // Log for debugging
+        console.log(`Attempted Questions: ${attemptedQuestionsCount}, Total Questions: ${this.stats.totalQuestions}`);
+
+        if (attemptedQuestionsCount === this.stats.totalQuestions && this.stats.totalQuestions > 0) {
             this.displayFinalScore();
         }
     }
@@ -792,11 +672,11 @@ class InteractiveBook {
      * Updates the width of the progress bar based on overall progress.
      */
     updateProgress() {
-        const answeredQuestionsCount = Object.keys(this.userAnswers).filter(key => 
-            this.userAnswers[key] === 'correct_already' || (typeof this.userAnswers[key] === 'number') || (typeof this.userAnswers[key] === 'string') || (typeof this.userAnswers[key] === 'object' && this.userAnswers[key] !== null)
+        const attemptedQuestionsCount = Object.keys(this.userAnswers).filter(key => 
+            this.userAnswers[key] !== undefined && this.userAnswers[key] !== null
         ).length;
 
-        const progressPercentage = this.stats.totalQuestions > 0 ? (answeredQuestionsCount / this.stats.totalQuestions) * 100 : 0;
+        const progressPercentage = this.stats.totalQuestions > 0 ? (attemptedQuestionsCount / this.stats.totalQuestions) * 100 : 0;
         this.progressFill.style.width = progressPercentage + '%';
     }
 
@@ -817,7 +697,8 @@ class InteractiveBook {
         } catch (e) {
             console.error('Cannot save progress - localStorage not available or quota exceeded:', e);
             // Inform the user if saving failed
-            alert('Could not save progress. Your browser might be in private mode or storage is full.');
+            // Using a custom message box instead of alert()
+            this.showCustomMessage('Could not save progress. Your browser might be in private mode or storage is full.', 'error');
         }
     }
 
@@ -840,8 +721,8 @@ class InteractiveBook {
             }
         } catch (e) {
             console.error('Cannot load progress - localStorage not available or data corrupted:', e);
-            // Inform the user if loading failed
-            alert('Could not load saved progress. Your browser might be in private mode or data is corrupted.');
+            // Using a custom message box instead of alert()
+            this.showCustomMessage('Could not load saved progress. Your browser might be in private mode or data is corrupted.', 'error');
         }
         return false;
     }
@@ -854,8 +735,9 @@ class InteractiveBook {
         if (this.loadProgress()) {
             this.showChapter(this.currentChapter, false); // Re-render current chapter without saving again
             this.updateStats(); // Ensure stats are fully updated
+            this.showCustomMessage('Progress loaded successfully!', 'success');
         } else {
-            alert('No saved progress found!');
+            this.showCustomMessage('No saved progress found!', 'info');
         }
     }
 
@@ -863,29 +745,30 @@ class InteractiveBook {
      * Resets all user progress and statistics.
      */
     resetProgress() {
-        if (!confirm('Are you sure you want to reset all your progress? This cannot be undone.')) {
-            return; // User cancelled
-        }
-        this.userAnswers = {};
-        this.stats = {
-            totalQuestions: this.stats.totalQuestions, // Keep total questions, reset others
-            correctAnswers: 0,
-            chaptersCompleted: 0
-        };
-        this.currentChapter = 0;
-        this.userName = ''; // Reset user info
-        this.userItqanId = ''; // Reset user info
-        try {
-            localStorage.removeItem('englishBookProgress');
-            localStorage.removeItem('englishBookUserInfo'); // Also clear user info
-            console.log('Progress reset successfully!');
-        } catch (e) {
-            console.error('Cannot clear progress - localStorage not available:', e);
-        }
-        this.updateStats(); // Update UI to reflect reset
-        this.showChapter(0); // Show the first chapter
-        // Re-prompt for user info after reset
-        this.promptForUserInfo();
+        // Using a custom confirmation dialog
+        this.showConfirmDialog('Are you sure you want to reset all your progress? This cannot be undone.', () => {
+            this.userAnswers = {};
+            this.stats = {
+                totalQuestions: this.stats.totalQuestions, // Keep total questions, reset others
+                correctAnswers: 0,
+                chaptersCompleted: 0
+            };
+            this.currentChapter = 0;
+            this.userName = ''; // Reset user info
+            this.userItqanId = ''; // Reset user info
+            try {
+                localStorage.removeItem('englishBookProgress');
+                localStorage.removeItem('englishBookUserInfo'); // Also clear user info
+                console.log('Progress reset successfully!');
+            } catch (e) {
+                console.error('Cannot clear progress - localStorage not available:', e);
+            }
+            this.updateStats(); // Update UI to reflect reset
+            this.showChapter(0); // Show the first chapter
+            // Re-prompt for user info after reset
+            this.promptForUserInfo();
+            this.showCustomMessage('Progress reset successfully!', 'success');
+        });
     }
 
     /**
@@ -913,6 +796,92 @@ class InteractiveBook {
         link.click(); // Programmatically click the link to trigger download
         document.body.removeChild(link); // Clean up the temporary link
         URL.revokeObjectURL(link.href); // Release the object URL
+        this.showCustomMessage('Progress exported successfully!', 'success');
+    }
+
+    /**
+     * Shows a custom message box (replaces alert()).
+     * @param {string} message - The message to display.
+     * @param {string} type - 'success', 'error', or 'info' for styling.
+     */
+    showCustomMessage(message, type) {
+        const messageBox = document.createElement('div');
+        messageBox.classList.add('custom-message-box', type);
+        messageBox.textContent = message;
+        document.body.appendChild(messageBox);
+
+        // Position it nicely (e.g., top center)
+        messageBox.style.position = 'fixed';
+        messageBox.style.top = '20px';
+        messageBox.style.left = '50%';
+        messageBox.style.transform = 'translateX(-50%)';
+        messageBox.style.padding = '15px 25px';
+        messageBox.style.borderRadius = '10px';
+        messageBox.style.zIndex = '10000';
+        messageBox.style.color = 'white';
+        messageBox.style.fontWeight = 'bold';
+        messageBox.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+        messageBox.style.opacity = '0';
+        messageBox.style.transition = 'opacity 0.3s ease-in-out, top 0.3s ease-in-out';
+
+        if (type === 'success') messageBox.style.backgroundColor = '#4CAF50';
+        else if (type === 'error') messageBox.style.backgroundColor = '#f44336';
+        else messageBox.style.backgroundColor = '#2196F3';
+
+        setTimeout(() => {
+            messageBox.style.opacity = '1';
+            messageBox.style.top = '30px'; // Slide down slightly
+        }, 10);
+
+        setTimeout(() => {
+            messageBox.style.opacity = '0';
+            messageBox.style.top = '10px'; // Slide up and fade out
+            messageBox.addEventListener('transitionend', () => messageBox.remove());
+        }, 3000); // Message disappears after 3 seconds
+    }
+
+    /**
+     * Shows a custom confirmation dialog (replaces confirm()).
+     * @param {string} message - The message to display.
+     * @param {function} onConfirm - Callback function if user confirms.
+     */
+    showConfirmDialog(message, onConfirm) {
+        const confirmOverlay = document.createElement('div');
+        confirmOverlay.classList.add('modal-overlay'); // Reuse modal-overlay style
+        confirmOverlay.style.display = 'flex'; // Ensure it's visible
+
+        confirmOverlay.innerHTML = `
+            <div class="modal-content">
+                <h2>Confirmation</h2>
+                <p>${message}</p>
+                <div style="margin-top: 20px;">
+                    <button class="btn" id="confirmYes" style="margin-right: 10px;">Yes</button>
+                    <button class="btn" id="confirmNo">No</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(confirmOverlay);
+
+        const confirmYesBtn = document.getElementById('confirmYes');
+        const confirmNoBtn = document.getElementById('confirmNo');
+
+        const cleanup = () => {
+            confirmYesBtn.removeEventListener('click', handleYes);
+            confirmNoBtn.removeEventListener('click', handleNo);
+            confirmOverlay.remove();
+        };
+
+        const handleYes = () => {
+            onConfirm();
+            cleanup();
+        };
+
+        const handleNo = () => {
+            cleanup();
+        };
+
+        confirmYesBtn.addEventListener('click', handleYes);
+        confirmNoBtn.addEventListener('click', handleNo);
     }
 }
 
@@ -970,6 +939,14 @@ function showConfetti() {
  */
 document.addEventListener('keydown', (e) => {
     if (book && book.chapters.length) {
+        // Prevent navigation if any modal is open
+        if (document.getElementById('userInfoModal').style.display === 'flex' || 
+            document.getElementById('finalScoreModal').style.display === 'flex' ||
+            document.querySelector('.custom-message-box') ||
+            document.querySelector('.modal-overlay.custom-confirm')) { // Check for custom confirm
+            return;
+        }
+
         if (e.key === 'ArrowLeft') {
             book.showChapter(Math.max(0, book.currentChapter - 1));
         } else if (e.key === 'ArrowRight') {
@@ -985,10 +962,24 @@ let touchStartX = 0;
 let touchEndX = 0;
 
 document.addEventListener('touchstart', (e) => {
+    // Prevent swipe navigation if any modal is open
+    if (document.getElementById('userInfoModal').style.display === 'flex' || 
+        document.getElementById('finalScoreModal').style.display === 'flex' ||
+        document.querySelector('.custom-message-box') ||
+        document.querySelector('.modal-overlay.custom-confirm')) { // Check for custom confirm
+        return;
+    }
     touchStartX = e.changedTouches[0].screenX;
 });
 
 document.addEventListener('touchend', (e) => {
+    // Prevent swipe navigation if any modal is open
+    if (document.getElementById('userInfoModal').style.display === 'flex' || 
+        document.getElementById('finalScoreModal').style.display === 'flex' ||
+        document.querySelector('.custom-message-box') ||
+        document.querySelector('.modal-overlay.custom-confirm')) { // Check for custom confirm
+        return;
+    }
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
 });
@@ -1048,7 +1039,7 @@ function printChapter() {
                         .feedback.correct { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
                         .feedback.incorrect { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
                         input[type="text"] { border: 1px solid #ccc; padding: 5px; width: 80%; }
-                        .btn, .utility-buttons, .progress-bar, .score, .chapter-nav, .stats { display: none; } /* Hide interactive elements */
+                        .btn, .utility-buttons, .progress-bar, .score, .chapter-nav, .stats, .chapter-actions { display: none; } /* Hide interactive elements including chapter actions */
                         @media print {
                             body { margin: 0; padding: 10mm; }
                             .container { box-shadow: none; border-radius: 0; background: none; }
@@ -1067,6 +1058,6 @@ function printChapter() {
         printWindow.print(); // Trigger the print dialog
         printWindow.onafterprint = () => printWindow.close(); // Close window after printing
     } else {
-        alert('No chapter content to print.');
+        book.showCustomMessage('No chapter content to print.', 'info');
     }
 }
