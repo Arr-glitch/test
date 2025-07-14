@@ -139,18 +139,17 @@ class InteractiveBook {
         }
 
         // Render chapter content and questions
+        // Modified to display chapter.content.passage directly and remove 'Lesson', 'Examples'
         this.bookContent.innerHTML = `
             <div class="chapter active">
                 <h2>${chapter.title}</h2>
                 <div class="lesson-content">
-                    <h3>Lesson</h3>
-                    <p>${chapter.content.lesson}</p>
-                    <h3>Explanation</h3>
-                    <p>${chapter.content.explanation}</p>
-                    <h3>Examples</h3>
-                    ${chapter.content.examples.map(example =>
-                        `<div class="example">${example}</div>`
-                    ).join('')}
+                    <h3>Reading Passage</h3>
+                    <p>${chapter.content.passage}</p>
+                    ${chapter.content.explanation ? `
+                        <h3>Explanation</h3>
+                        <p>${chapter.content.explanation}</p>
+                    ` : ''}
                 </div>
                 <div class="questions">
                     ${chapter.questions.map((q, i) => this.renderQuestion(q, index, i)).join('')}
@@ -241,12 +240,10 @@ class InteractiveBook {
                 break;
 
             case 'reading-passage':
+                // Removed the inner 'lesson-content' block for reading passage questions
+                // as the main passage is now displayed at the chapter level.
                 questionHtml = `
                     <div class="question-container">
-                        <div class="lesson-content">
-                            <h3>Reading Passage</h3>
-                            <p>${question.passage}</p>
-                        </div>
                         <div class="question">${question.question}</div>
                         <div class="options">
                             ${question.options.map((option, i) =>
