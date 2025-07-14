@@ -58,7 +58,6 @@ body {
         border: none;
     padding: 14px 28px; /* Larger padding */
     border-radius: 30px; /* More rounded */
-    cursor: pointer;
 
     font-weight: 600; /* Bolder text */
     transition: all 0.3s ease;
@@ -99,7 +98,17 @@ background: linear-gradient(145deg, #4CAF50, #6aa24c); /* Green for active */
     margin-top: 15px;
     color: white;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+
+
+
+    border: none;
+    padding: 14px 28px; /* Larger padding */
+    border-radius: 30px; /* More rounded */
+
+
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Subtle shadow */
+    text-shadow: 0 1px 2px rgba(255,255,255,0.4); /* Light text shadow */
 }
 
 /* Chapter Navigation */
