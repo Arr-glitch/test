@@ -14,6 +14,10 @@ class InteractiveBook {
             correctAnswers: 0,
             chaptersCompleted: 0
         };
+        // User information
+        this.userName = '';
+        this.userItqanId = '';
+
         // DOM elements references
         this.loadingIndicator = document.getElementById('loadingIndicator');
         this.totalScoreSpan = document.getElementById('totalScore');
@@ -26,6 +30,19 @@ class InteractiveBook {
         this.accuracyStat = document.getElementById('accuracy');
         this.chaptersCompletedStat = document.getElementById('chaptersCompleted');
 
+        // Modal elements
+        this.userInfoModal = document.getElementById('userInfoModal');
+        this.userNameInput = document.getElementById('userNameInput');
+        this.itqanIdInput = document.getElementById('itqanIdInput');
+        this.startLearningBtn = document.getElementById('startLearningBtn');
+        this.userInfoMessage = document.getElementById('userInfoMessage');
+
+        this.finalScoreModal = document.getElementById('finalScoreModal');
+        this.finalUserNameSpan = document.getElementById('finalUserName');
+        this.finalItqanIdSpan = document.getElementById('finalItqanId');
+        this.finalScoreDisplay = document.getElementById('finalScoreDisplay');
+        this.finalTotalQuestions = document.getElementById('finalTotalQuestions');
+
         this.init(); // Initialize the book
     }
 
@@ -33,7 +50,12 @@ class InteractiveBook {
      * Initializes the book by loading content and setting up the UI.
      */
     async init() {
-        this.showLoading(true); // Show loading indicator
+        this.showLoading(true); // Show loading indicator initially
+        
+        // First, prompt for user info
+        await this.promptForUserInfo();
+
+        // After user info is submitted, proceed with loading content and rendering
         try {
             await this.loadContent(); // Load content from JSON
             this.renderChapterNavigation(); // Create chapter navigation buttons
@@ -56,8 +78,63 @@ class InteractiveBook {
                 </div>
             `;
         } finally {
-            this.showLoading(false); // Hide loading indicator
+            this.showLoading(false); // Hide loading indicator after everything is loaded/rendered
         }
+    }
+
+    /**
+     * Prompts the user for their name and ITQAN ID using a custom modal.
+     * Returns a Promise that resolves when the user submits valid information.
+     */
+    promptForUserInfo() {
+        return new Promise(resolve => {
+            this.userInfoModal.style.display = 'flex'; // Show the modal
+            this.showLoading(false); // Hide main loading indicator while modal is open
+
+            // Load saved user info if available
+            try {
+                const savedUserInfo = localStorage.getItem('englishBookUserInfo');
+                if (savedUserInfo) {
+                    const userInfo = JSON.parse(savedUserInfo);
+                    this.userNameInput.value = userInfo.name || '';
+                    this.itqanIdInput.value = userInfo.itqanId || '';
+                    this.userName = userInfo.name || '';
+                    this.userItqanId = userInfo.itqanId || '';
+                }
+            } catch (e) {
+                console.error('Error loading user info from localStorage:', e);
+            }
+
+            const handleSubmit = () => {
+                const name = this.userNameInput.value.trim();
+                const itqanId = this.itqanIdInput.value.trim();
+
+                if (name && itqanId) {
+                    this.userName = name;
+                    this.userItqanId = itqanId;
+                    try {
+                        localStorage.setItem('englishBookUserInfo', JSON.stringify({ name: this.userName, itqanId: this.userItqanId }));
+                    } catch (e) {
+                        console.error('Error saving user info to localStorage:', e);
+                    }
+                    this.userInfoModal.style.display = 'none'; // Hide the modal
+                    this.startLearningBtn.removeEventListener('click', handleSubmit); // Clean up listener
+                    resolve(); // Resolve the promise to continue initialization
+                } else {
+                    this.userInfoMessage.textContent = 'Please enter both your name and ITQAN ID.';
+                }
+            };
+
+            this.startLearningBtn.addEventListener('click', handleSubmit);
+            
+            // Allow pressing Enter in input fields to submit
+            this.userNameInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleSubmit();
+            });
+            this.itqanIdInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleSubmit();
+            });
+        });
     }
 
     /**
@@ -436,6 +513,7 @@ class InteractiveBook {
         container.querySelector('.btn').disabled = true; // Disable check button
         if (isCorrect) showConfetti(); // Show confetti for correct answers
         this.saveProgress(); // Save progress after checking answer
+        this.checkCompletionAndShowScore(); // Check if all questions are answered
     }
 
     /**
@@ -484,6 +562,7 @@ class InteractiveBook {
         feedbackElement.closest('.question-container').querySelector('.btn').disabled = true; // Disable check button
         if (isCorrect) showConfetti(); // Show confetti for correct answers
         this.saveProgress(); // Save progress after checking answer
+        this.checkCompletionAndShowScore(); // Check if all questions are answered
     }
 
     /**
@@ -641,6 +720,7 @@ class InteractiveBook {
         feedbackElement.closest('.question-container').querySelector('.btn').disabled = true; // Disable check button
         if (isCorrect) showConfetti(); // Show confetti for correct answers
         this.saveProgress(); // Save progress after checking answer
+        this.checkCompletionAndShowScore(); // Check if all questions are answered
     }
 
     /**
@@ -652,7 +732,7 @@ class InteractiveBook {
             this.userAnswers[key] === 'correct_already' || (typeof this.userAnswers[key] === 'number') || (typeof this.userAnswers[key] === 'string') || (typeof this.userAnswers[key] === 'object' && this.userAnswers[key] !== null)
         ).length;
 
-        const accuracy = this.stats.totalQuestions > 0 ? Math.round((this.stats.correctAnswers / answeredQuestionsCount) * 100) : 0;
+        const accuracy = answeredQuestionsCount > 0 ? Math.round((this.stats.correctAnswers / answeredQuestionsCount) * 100) : 0;
         
         this.totalScoreSpan.textContent = this.stats.correctAnswers;
         this.correctAnswersStat.textContent = this.stats.correctAnswers;
@@ -678,6 +758,37 @@ class InteractiveBook {
     }
 
     /**
+     * Checks if all questions have been answered and displays the final score modal.
+     */
+    checkCompletionAndShowScore() {
+        const answeredQuestionsCount = Object.keys(this.userAnswers).filter(key => 
+            this.userAnswers[key] === 'correct_already' || (typeof this.userAnswers[key] === 'number') || (typeof this.userAnswers[key] === 'string') || (typeof this.userAnswers[key] === 'object' && this.userAnswers[key] !== null)
+        ).length;
+
+        if (answeredQuestionsCount === this.stats.totalQuestions && this.stats.totalQuestions > 0) {
+            this.displayFinalScore();
+        }
+    }
+
+    /**
+     * Displays the final score modal with user's name, ID, and score.
+     */
+    displayFinalScore() {
+        this.finalUserNameSpan.textContent = this.userName;
+        this.finalItqanIdSpan.textContent = this.userItqanId;
+        this.finalScoreDisplay.textContent = this.stats.correctAnswers;
+        this.finalTotalQuestions.textContent = this.stats.totalQuestions;
+        this.finalScoreModal.style.display = 'flex'; // Show the final score modal
+    }
+
+    /**
+     * Hides the final score modal.
+     */
+    hideFinalScoreModal() {
+        this.finalScoreModal.style.display = 'none';
+    }
+
+    /**
      * Updates the width of the progress bar based on overall progress.
      */
     updateProgress() {
@@ -690,13 +801,15 @@ class InteractiveBook {
     }
 
     /**
-     * Saves the current progress (user answers, stats, current chapter) to localStorage.
+     * Saves the current progress (user answers, stats, current chapter, user info) to localStorage.
      */
     saveProgress() {
         const progress = {
             userAnswers: this.userAnswers,
             stats: this.stats,
-            currentChapter: this.currentChapter
+            currentChapter: this.currentChapter,
+            userName: this.userName, // Save user info
+            userItqanId: this.userItqanId // Save user info
         };
         try {
             localStorage.setItem('englishBookProgress', JSON.stringify(progress));
@@ -720,6 +833,8 @@ class InteractiveBook {
                 this.userAnswers = progress.userAnswers || {};
                 this.stats = { ...this.stats, ...progress.stats }; // Merge loaded stats
                 this.currentChapter = progress.currentChapter || 0;
+                this.userName = progress.userName || ''; // Load user info
+                this.userItqanId = progress.userItqanId || ''; // Load user info
                 console.log('Progress loaded successfully!');
                 return true;
             }
@@ -758,14 +873,19 @@ class InteractiveBook {
             chaptersCompleted: 0
         };
         this.currentChapter = 0;
+        this.userName = ''; // Reset user info
+        this.userItqanId = ''; // Reset user info
         try {
             localStorage.removeItem('englishBookProgress');
+            localStorage.removeItem('englishBookUserInfo'); // Also clear user info
             console.log('Progress reset successfully!');
         } catch (e) {
             console.error('Cannot clear progress - localStorage not available:', e);
         }
         this.updateStats(); // Update UI to reflect reset
         this.showChapter(0); // Show the first chapter
+        // Re-prompt for user info after reset
+        this.promptForUserInfo();
     }
 
     /**
@@ -773,6 +893,8 @@ class InteractiveBook {
      */
     exportProgress() {
         const progress = {
+            userName: this.userName,
+            userItqanId: this.userItqanId,
             userAnswers: this.userAnswers,
             stats: this.stats,
             currentChapter: this.currentChapter,
@@ -786,7 +908,7 @@ class InteractiveBook {
         
         const link = document.createElement('a');
         link.href = URL.createObjectURL(dataBlob);
-        link.download = 'english_learning_progress.json';
+        link.download = `english_learning_progress_${this.userName.replace(/\s/g, '_') || 'user'}.json`;
         document.body.appendChild(link); // Append to body to make it clickable
         link.click(); // Programmatically click the link to trigger download
         document.body.removeChild(link); // Clean up the temporary link
