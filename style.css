@@ -51,18 +51,9 @@ body {
 
 .header h1 {
     color: white;
-    background: linear-gradient(145deg, #4CAF50, #6aa24c); /* Green for active */
     font-size: 2.8em; /* Slightly larger title */
     margin-bottom: 10px;
-
-        border: none;
-    padding: 14px 28px; /* Larger padding */
-    border-radius: 30px; /* More rounded */
-
-    font-weight: 600; /* Bolder text */
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Subtle shadow */
-    text-shadow: 0 1px 2px rgba(255,255,255,0.4); /* Light text shadow */
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4); /* More prominent shadow */
 }
 
 .header p {
@@ -92,23 +83,12 @@ body {
 
 /* Score Display */
 .score {
-background: linear-gradient(145deg, #4CAF50, #6aa24c); /* Green for active */
     text-align: center;
     font-size: 1.3em;
     margin-top: 15px;
     color: white;
     font-weight: bold;
-
-
-
-    border: none;
-    padding: 14px 28px; /* Larger padding */
-    border-radius: 30px; /* More rounded */
-
-
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Subtle shadow */
-    text-shadow: 0 1px 2px rgba(255,255,255,0.4); /* Light text shadow */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 /* Chapter Navigation */
@@ -563,6 +543,100 @@ background: linear-gradient(145deg, #4CAF50, #6aa24c); /* Green for active */
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of everything */
+    backdrop-filter: blur(5px); /* Blur background content */
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0); /* Light gradient for modal */
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.9); /* Start slightly scaled down */
+    animation: modalPopIn 0.3s forwards ease-out; /* Pop-in animation */
+    color: #333;
+}
+
+.modal-content h2 {
+    color: #667eea;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.modal-content p span {
+    font-weight: bold;
+    color: #4a5568;
+}
+
+.modal-input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.modal-input-group label {
+    display: block;
+    font-size: 1em;
+    color: #4a5568;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.modal-input-group input {
+    width: calc(100% - 24px); /* Account for padding */
+    padding: 12px;
+    border: 2px solid #cbd5e0;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 110, 234, 0.2);
+}
+
+.modal-message {
+    color: #f56565;
+    font-size: 0.9em;
+    margin-top: 10px;
+    min-height: 20px; /* Reserve space for message */
+}
+
+/* Modal Pop-in Animation */
+@keyframes modalPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
 /* Responsive Design */
 @media (max-width: 992px) {
     .header h1 {
@@ -573,6 +647,9 @@ background: linear-gradient(145deg, #4CAF50, #6aa24c); /* Green for active */
     }
     .stats {
         grid-template-columns: 1fr; /* Stack stats vertically on smaller screens */
+    }
+    .modal-content {
+        padding: 30px;
     }
 }
 
@@ -624,6 +701,13 @@ background: linear-gradient(145deg, #4CAF50, #6aa24c); /* Green for active */
     .utility-buttons .btn {
         min-width: unset; /* Remove min-width for smaller screens */
         width: 100%; /* Make buttons full width */
+    }
+    .modal-content {
+        padding: 25px;
+        width: 95%;
+    }
+    .modal-content h2 {
+        font-size: 1.8em;
     }
 }
 
