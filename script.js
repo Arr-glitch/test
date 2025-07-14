@@ -18,7 +18,8 @@ class InteractiveBook {
         this.loadingIndicator = document.getElementById('loadingIndicator');
         this.totalScoreSpan = document.getElementById('totalScore');
         this.totalQuestionsSpan = document.getElementById('totalQuestions');
-        this.chapterNav = document.getElementById('chapterNav');
+        this.chapterNavTop = document.getElementById('chapterNavTop'); // Reference to top navigation
+        this.chapterNavBottom = document.getElementById('chapterNavBottom'); // Reference to bottom navigation
         this.bookContent = document.getElementById('bookContent');
         this.progressFill = document.getElementById('progressFill');
         this.correctAnswersStat = document.getElementById('correctAnswers');
@@ -105,13 +106,16 @@ class InteractiveBook {
      * Renders the navigation buttons for each chapter.
      */
     renderChapterNavigation() {
-        if (!this.chapterNav || !this.chapters.length) return;
+        if (!this.chapterNavTop || !this.chapterNavBottom || !this.chapters.length) return;
 
-        this.chapterNav.innerHTML = this.chapters.map((chapter, index) =>
+        const navHtml = this.chapters.map((chapter, index) =>
             `<button class="chapter-btn ${index === this.currentChapter ? 'active' : ''}" onclick="book.showChapter(${index})">
                 ${index + 1}. ${chapter.title}
             </button>`
         ).join('');
+
+        this.chapterNavTop.innerHTML = navHtml;
+        this.chapterNavBottom.innerHTML = navHtml; // Render to both top and bottom
     }
 
     /**
@@ -127,7 +131,7 @@ class InteractiveBook {
 
         this.currentChapter = index;
 
-        // Update navigation button active state
+        // Update navigation button active state for both top and bottom navs
         document.querySelectorAll('.chapter-btn').forEach((btn, i) => {
             btn.classList.toggle('active', i === index);
         });
