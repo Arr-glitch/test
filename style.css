@@ -101,30 +101,34 @@ body {
 }
 
 .chapter-btn {
-    background: rgba(255, 255, 255, 0.25); /* More visible background */
-    color: white;
+    /* Modern button styling */
+    background: linear-gradient(145deg, #a2d2ff, #8ecae6); /* Soft blue gradient */
+    color: #2a3d4f; /* Darker text for contrast */
     border: none;
     padding: 14px 28px; /* Larger padding */
     border-radius: 30px; /* More rounded */
     cursor: pointer;
     font-size: 1.1em;
+    font-weight: 600; /* Bolder text */
     transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Subtle shadow */
+    text-shadow: 0 1px 2px rgba(255,255,255,0.4); /* Light text shadow */
 }
 
 .chapter-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: linear-gradient(145deg, #8ecae6, #a2d2ff); /* Invert gradient on hover */
     transform: translateY(-3px); /* More pronounced lift effect */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
 .chapter-btn.active {
-    background: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(145deg, #4CAF50, #6aa24c); /* Green for active */
+    color: white; /* White text for active */
     transform: translateY(-2px);
-    border-color: white; /* Highlight active button border */
+    border: 2px solid white; /* White border for active */
     font-weight: bold;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 /* Book Content Area */
@@ -158,7 +162,7 @@ body {
     text-align: center;
 }
 
-/* Lesson Content */
+/* Lesson Content (kept for reading passage display) */
 .lesson-content {
     background: #f0f4f8; /* Softer background color */
     padding: 30px;
@@ -281,22 +285,23 @@ body {
     box-shadow: 0 0 0 3px rgba(102, 110, 234, 0.2);
 }
 
-/* Buttons */
+/* Buttons (General) */
 .btn {
-    background: #667eea;
+    background: linear-gradient(145deg, #667eea, #764ba2); /* Purple-blue gradient */
     color: white;
     border: none;
     padding: 14px 28px;
     border-radius: 30px;
     cursor: pointer;
     font-size: 1.1em;
+    font-weight: 600;
     transition: all 0.3s ease;
     margin-right: 10px;
     box-shadow: 0 5px 15px rgba(102, 110, 234, 0.3);
 }
 
 .btn:hover {
-    background: #5a67d8;
+    background: linear-gradient(145deg, #764ba2, #667eea); /* Invert gradient on hover */
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(102, 110, 234, 0.4);
 }
@@ -322,12 +327,12 @@ body {
 }
 
 .print-btn {
-    background: #38b2ac; /* Different color for print button */
+    background: linear-gradient(145deg, #38b2ac, #4fd1c5); /* Teal gradient for print */
     box-shadow: 0 5px 15px rgba(56, 178, 172, 0.3);
 }
 
 .print-btn:hover {
-    background: #319795;
+    background: linear-gradient(145deg, #4fd1c5, #38b2ac);
     box-shadow: 0 8px 20px rgba(56, 178, 172, 0.4);
 }
 
@@ -371,7 +376,7 @@ body {
 }
 
 .drag-item {
-    background: #667eea;
+    background: linear-gradient(145deg, #ffbe0b, #fb5607); /* Orange-yellow gradient */
     color: white;
     padding: 14px;
     border-radius: 12px;
@@ -379,13 +384,14 @@ body {
     text-align: center;
     transition: all 0.3s ease;
     user-select: none;
-    box-shadow: 0 3px 8px rgba(102, 110, 234, 0.3);
+    box-shadow: 0 3px 8px rgba(255, 190, 11, 0.3);
+    font-weight: 500;
 }
 
 .drag-item:hover {
-    background: #5a67d8;
+    background: linear-gradient(145deg, #fb5607, #ffbe0b);
     transform: scale(1.03);
-    box-shadow: 0 5px 12px rgba(102, 110, 234, 0.4);
+    box-shadow: 0 5px 12px rgba(255, 190, 11, 0.4);
 }
 
 .drag-item.dragging {
