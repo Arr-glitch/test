@@ -1,0 +1,3174 @@
+{
+  "chapters": [
+    {
+      "title": "Chapter 1: Grammar Practice",
+      "content": {
+        "lesson": "This is a grammar lesson for chapter 1.",
+        "explanation": "This chapter focuses on verb usage and sentence formation.",
+        "examples": [
+          "Example: He goes to school every day.",
+          "Example: They are playing in the garden.",
+          "Example: I have eaten breakfast."
+        ]
+      },
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 0?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 0 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 1?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 1 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 2?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 2 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 3?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 3 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 4?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 4 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 5?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 5 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 6?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 6 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 7?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 7 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 8?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 8 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 9?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 9 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        }
+      ]
+    },
+    {
+      "title": "Chapter 2: Grammar Practice",
+      "content": {
+        "lesson": "This is a grammar lesson for chapter 2.",
+        "explanation": "This chapter focuses on verb usage and sentence formation.",
+        "examples": [
+          "Example: He goes to school every day.",
+          "Example: They are playing in the garden.",
+          "Example: I have eaten breakfast."
+        ]
+      },
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 10?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 10 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 11?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 11 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 12?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 12 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 13?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 13 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 14?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 14 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 15?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 15 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 16?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 16 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 17?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 17 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 18?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 18 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 19?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 19 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        }
+      ]
+    },
+    {
+      "title": "Chapter 3: Grammar Practice",
+      "content": {
+        "lesson": "This is a grammar lesson for chapter 3.",
+        "explanation": "This chapter focuses on verb usage and sentence formation.",
+        "examples": [
+          "Example: He goes to school every day.",
+          "Example: They are playing in the garden.",
+          "Example: I have eaten breakfast."
+        ]
+      },
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 20?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 20 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 21?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 21 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 22?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 22 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 23?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 23 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 24?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 24 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 25?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 25 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 26?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 26 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 27?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 27 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 28?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 28 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 29?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 29 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        }
+      ]
+    },
+    {
+      "title": "Chapter 4: Grammar Practice",
+      "content": {
+        "lesson": "This is a grammar lesson for chapter 4.",
+        "explanation": "This chapter focuses on verb usage and sentence formation.",
+        "examples": [
+          "Example: He goes to school every day.",
+          "Example: They are playing in the garden.",
+          "Example: I have eaten breakfast."
+        ]
+      },
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 30?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 30 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 31?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 31 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 32?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 32 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 33?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 33 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 34?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 34 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 35?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 35 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 36?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 36 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 37?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 37 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 38?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 38 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 39?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 39 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        }
+      ]
+    },
+    {
+      "title": "Chapter 5: Grammar Practice",
+      "content": {
+        "lesson": "This is a grammar lesson for chapter 5.",
+        "explanation": "This chapter focuses on verb usage and sentence formation.",
+        "examples": [
+          "Example: He goes to school every day.",
+          "Example: They are playing in the garden.",
+          "Example: I have eaten breakfast."
+        ]
+      },
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 40?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 40 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 41?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 41 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 42?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 42 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 43?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 43 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 44?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 44 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 45?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 45 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 46?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 46 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 47?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 47 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 48?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 48 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "What is the correct form of verb in sentence 49?",
+          "options": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "correct": 1,
+          "feedback": "The correct form for third person singular is 'goes'."
+        },
+        {
+          "type": "fill-in-blank",
+          "question": "Fill in the blank: 'He _____ to the market.'",
+          "correct": "goes",
+          "feedback": "The correct verb is 'goes'."
+        },
+        {
+          "type": "drag-drop",
+          "question": "Arrange the sentence 49 correctly:",
+          "items": [
+            "He",
+            "to",
+            "goes",
+            "market",
+            "the"
+          ],
+          "correct": [
+            "He",
+            "goes",
+            "to",
+            "the",
+            "market"
+          ],
+          "feedback": "Correct order: He goes to the market."
+        },
+        {
+          "type": "reading-passage",
+          "passage": "Apples are fruits that grow on trees. They are sweet and come in red, green, or yellow.",
+          "question": "What are apples? (Select one option)",
+          "options": [
+            "Vegetables",
+            "Grains",
+            "Fruits",
+            "Legumes"
+          ],
+          "correct": 2,
+          "feedback": "Apples are fruits."
+        },
+        {
+          "type": "multiple-choice",
+          "question": "Which color can apples be? (Select one option)",
+          "options": [
+            "Red",
+            "Blue",
+            "Purple",
+            "Black"
+          ],
+          "correct": 0,
+          "feedback": "Apples can be red, green, or yellow."
+        }
+      ]
+    }
+  ]
+}

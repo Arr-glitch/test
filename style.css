@@ -1,0 +1,617 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add some padding around the container */
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    width: 100%; /* Ensure container takes full width on smaller screens */
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Slightly opaque background for content */
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px); /* Subtle blur effect */
+}
+
+/* Header Styling */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.1); /* Lighter background for header */
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white; /* Text color for header */
+}
+
+.header .logo {
+    max-width: 150px; /* Adjust logo size */
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 10px; /* Slightly rounded corners for the logo */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.header h1 {
+    color: white;
+    font-size: 2.8em; /* Slightly larger title */
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4); /* More prominent shadow */
+}
+
+.header p {
+    color: rgba(255, 255, 255, 0.95); /* Slightly more opaque paragraph */
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 90%; /* Slightly narrower progress bar */
+    height: 10px; /* Thicker progress bar */
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    margin: 20px auto; /* Center the progress bar */
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8bc34a); /* Brighter green gradient */
+    border-radius: 5px;
+    transition: width 0.4s ease-out; /* Smoother transition */
+    width: 0%;
+}
+
+/* Score Display */
+.score {
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 15px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Chapter Navigation */
+.chapter-nav {
+    display: flex;
+    gap: 12px; /* Slightly more space between buttons */
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chapter-btn {
+    background: rgba(255, 255, 255, 0.25); /* More visible background */
+    color: white;
+    border: none;
+    padding: 14px 28px; /* Larger padding */
+    border-radius: 30px; /* More rounded */
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.chapter-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px); /* More pronounced lift effect */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.chapter-btn.active {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    border-color: white; /* Highlight active button border */
+    font-weight: bold;
+}
+
+/* Book Content Area */
+.book-content {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Stronger shadow */
+    overflow: hidden;
+    margin-bottom: 30px;
+    min-height: 400px; /* Ensure a minimum height */
+    position: relative; /* For loading indicator positioning */
+}
+
+/* Individual Chapter Styling */
+.chapter {
+    padding: 40px;
+    display: none;
+    animation: fadeIn 0.6s ease-out; /* Slower, smoother fade-in */
+}
+
+.chapter.active {
+    display: block;
+}
+
+.chapter h2 {
+    color: #4a5568;
+    font-size: 2.4em; /* Larger chapter titles */
+    margin-bottom: 25px;
+    border-bottom: 4px solid #667eea; /* Thicker, more prominent border */
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* Lesson Content */
+.lesson-content {
+    background: #f0f4f8; /* Softer background color */
+    padding: 30px;
+    border-radius: 18px; /* More rounded corners */
+    margin-bottom: 35px;
+    border-left: 6px solid #667eea; /* Thicker left border */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05); /* Inner shadow */
+}
+
+.lesson-content h3 {
+    color: #2d3748;
+    margin-bottom: 18px;
+    font-size: 1.6em; /* Larger subheadings */
+    border-bottom: 1px dashed #cbd5e0; /* Subtle dashed border */
+    padding-bottom: 8px;
+}
+
+.lesson-content p {
+    line-height: 1.7; /* Increased line height for readability */
+    margin-bottom: 18px;
+    font-size: 1.1em;
+}
+
+.example {
+    background: #e0f7fa; /* Lighter blue for examples */
+    padding: 18px;
+    border-radius: 12px;
+    margin: 18px 0;
+    border-left: 5px solid #00bcd4; /* Brighter blue border */
+    font-style: italic;
+    color: #263238;
+}
+
+/* Question Container */
+.question-container {
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0; /* More vertical spacing */
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.question-container:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.question {
+    font-size: 1.3em; /* Larger question text */
+    margin-bottom: 25px;
+    color: #2d3748;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Options for Multiple Choice */
+.options {
+    display: grid;
+    gap: 15px; /* More space between options */
+    margin-bottom: 25px;
+}
+
+.option {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.15em;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.option:hover {
+    background: #edf2f7;
+    border-color: #667eea;
+    transform: translateX(8px); /* More pronounced slide effect */
+}
+
+.option.selected {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 110, 234, 0.4);
+}
+
+.option.correct {
+    background: #48bb78;
+    color: white;
+    border-color: #48bb78;
+    box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+}
+
+.option.incorrect {
+    background: #f56565;
+    color: white;
+    border-color: #f56565;
+    box-shadow: 0 5px 15px rgba(245, 101, 101, 0.4);
+}
+
+/* Input for Fill-in-Blank */
+.input-question input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.15em;
+    margin-bottom: 18px;
+    transition: border-color 0.3s ease;
+}
+
+.input-question input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 110, 234, 0.2);
+}
+
+/* Buttons */
+.btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+    box-shadow: 0 5px 15px rgba(102, 110, 234, 0.3);
+}
+
+.btn:hover {
+    background: #5a67d8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 110, 234, 0.4);
+}
+
+.btn:disabled {
+    background: #a0aec0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.utility-buttons {
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.utility-buttons .btn {
+    min-width: 150px;
+}
+
+.print-btn {
+    background: #38b2ac; /* Different color for print button */
+    box-shadow: 0 5px 15px rgba(56, 178, 172, 0.3);
+}
+
+.print-btn:hover {
+    background: #319795;
+    box-shadow: 0 8px 20px rgba(56, 178, 172, 0.4);
+}
+
+/* Feedback Messages */
+.feedback {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.feedback.correct {
+    background: #c6f6d5;
+    color: #22543d;
+    border: 1px solid #9ae6b4;
+}
+
+.feedback.incorrect {
+    background: #fed7d7;
+    color: #742a2a;
+    border: 1px solid #fc8181;
+}
+
+/* Drag and Drop Styling */
+.drag-drop {
+    display: flex;
+    gap: 25px; /* More space between drag items and drop zones */
+    margin: 25px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.drag-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-width: 150px; /* Ensure items don't become too narrow */
+}
+
+.drag-item {
+    background: #667eea;
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: grab;
+    text-align: center;
+    transition: all 0.3s ease;
+    user-select: none;
+    box-shadow: 0 3px 8px rgba(102, 110, 234, 0.3);
+}
+
+.drag-item:hover {
+    background: #5a67d8;
+    transform: scale(1.03);
+    box-shadow: 0 5px 12px rgba(102, 110, 234, 0.4);
+}
+
+.drag-item.dragging {
+    opacity: 0.6; /* Slightly more opaque when dragging */
+    cursor: grabbing;
+}
+
+.drop-zones {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.drop-zone {
+    border: 2px dashed #a0aec0; /* Softer dashed border */
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+    min-height: 60px; /* Taller drop zones */
+    transition: all 0.3s ease;
+    position: relative;
+    background-color: #f8f8f8; /* Light background for empty zones */
+    color: #718096; /* Placeholder text color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+}
+
+.drop-zone.drag-over {
+    border-color: #667eea;
+    background: #e6e9fa; /* Lighter background on drag over */
+    box-shadow: 0 0 0 3px rgba(102, 110, 234, 0.2);
+}
+
+.drop-zone.filled {
+    border-color: #48bb78;
+    background: #d4edda; /* Greenish background when filled */
+    color: #2d3748; /* Darker text for filled zones */
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Audio Player (Placeholder Styling) */
+.audio-player {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.play-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 110, 234, 0.3);
+}
+
+.play-btn:hover {
+    background: #5a67d8;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(102, 110, 234, 0.4);
+}
+
+/* Statistics Section */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adapt to screen size */
+    gap: 25px; /* More space between cards */
+    margin-top: 40px;
+    padding: 0 10px; /* Add some horizontal padding */
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 3em; /* Larger numbers */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Loading Indicator */
+.loading {
+    text-align: center;
+    padding: 60px; /* More padding for a centered look */
+    color: #667eea;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Position over content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white overlay */
+    z-index: 10;
+    border-radius: 20px; /* Match container border-radius */
+}
+
+.spinner {
+    border: 6px solid #f3f3f3; /* Thicker spinner */
+    border-top: 6px solid #667eea;
+    border-radius: 50%;
+    width: 50px; /* Larger spinner */
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 25px auto;
+}
+
+/* Keyframe Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); } /* More pronounced slide-up */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .header h1 {
+        font-size: 2.4em;
+    }
+    .chapter h2 {
+        font-size: 2em;
+    }
+    .stats {
+        grid-template-columns: 1fr; /* Stack stats vertically on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+    .chapter {
+        padding: 25px;
+    }
+    .header h1 {
+        font-size: 2em;
+    }
+    .header p {
+        font-size: 1em;
+    }
+    .chapter-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .lesson-content {
+        padding: 20px;
+    }
+    .question-container {
+        padding: 20px;
+    }
+    .question {
+        font-size: 1.1em;
+    }
+    .option, .input-question input {
+        padding: 12px;
+        font-size: 1em;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+    .drag-drop {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .drag-item, .drop-zone {
+        padding: 12px;
+    }
+    .utility-buttons .btn {
+        min-width: unset; /* Remove min-width for smaller screens */
+        width: 100%; /* Make buttons full width */
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+    .chapter h2 {
+        font-size: 1.8em;
+    }
+    .stat-number {
+        font-size: 2.5em;
+    }
+    .loading p {
+        font-size: 1.2em;
+    }
+}
