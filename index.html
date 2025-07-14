@@ -20,7 +20,8 @@
             <div class="score">Score: <span id="totalScore">0</span>/<span id="totalQuestions">0</span></div>
         </div>
 
-        <div class="chapter-nav" id="chapterNav">
+        <!-- Top Chapter Navigation -->
+        <div class="chapter-nav" id="chapterNavTop">
             <!-- Navigation buttons will be generated here by JavaScript -->
         </div>
 
@@ -30,6 +31,11 @@
                 <p>Loading content...</p>
             </div>
             <!-- Chapters and questions will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Bottom Chapter Navigation -->
+        <div class="chapter-nav" id="chapterNavBottom">
+            <!-- Navigation buttons will be generated here by JavaScript -->
         </div>
 
         <div class="stats">
@@ -47,8 +53,6 @@
             </div>
         </div>
 
-
-
         <!-- Utility buttons for saving/loading/resetting progress -->
         <div class="utility-buttons">
             <button class="btn" onclick="book.saveProgress()">Save Progress</button>
@@ -58,9 +62,7 @@
             <button class="btn print-btn" onclick="printChapter()">Print Current Chapter</button>
         </div>
     </div>
-        <div class="chapter-nav" id="chapterNav">
-            <!-- Navigation buttons will be generated here by JavaScript -->
-        </div>
+
     <!-- Link to external JavaScript file -->
     <script src="script.js"></script>
 </body>
