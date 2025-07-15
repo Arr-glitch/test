@@ -83,12 +83,9 @@
             </div>
         </div>
 
-        <!-- Utility buttons for saving/loading/resetting progress -->
-        <div class="utility-buttons">
-            <button class="btn" onclick="book.saveProgress()">Save Progress</button>
-            <button class="btn" onclick="book.loadProgressAndRender()">Load Progress</button>
-            <button class="btn" onclick="book.resetProgress()">Reset Progress</button>
-            <button class="btn" onclick="book.exportProgress()">Export Progress</button>
+        <!-- New "Finish All Questions" button -->
+        <div class="final-actions utility-buttons">
+            <button class="btn" id="finishAllQuestionsBtn" disabled>Finish All Questions</button>
             <button class="btn print-btn" onclick="printChapter()">Print Current Chapter</button>
         </div>
     </div>
