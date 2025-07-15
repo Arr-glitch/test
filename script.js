@@ -56,7 +56,7 @@ class InteractiveBook {
     async init() {
         this.showLoading(true); // Show loading indicator initially
         
-        // First, prompt for user info
+        // First, prompt for user info. The loading indicator will remain visible behind the modal.
         await this.promptForUserInfo();
 
         // After user info is submitted, proceed with loading content and rendering
@@ -99,7 +99,6 @@ class InteractiveBook {
     promptForUserInfo() {
         return new Promise(resolve => {
             this.userInfoModal.style.display = 'flex'; // Show the modal
-            this.showLoading(false); // Hide main loading indicator while modal is open
 
             // Load saved user info if available
             try {
@@ -164,7 +163,7 @@ class InteractiveBook {
      */
     async loadContent() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/Arr-glitch/test/refs/heads/main/content.json');
+            const response = await fetch('./content.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -560,7 +559,7 @@ class InteractiveBook {
      * @param {number} optionIndex - The index of the selected option.
      */
     selectOption(questionId, optionIndex) {
-        const container = document.querySelector(`#feedback_${questionId}`).closest('.question-container`);
+        const container = document.querySelector(`#feedback_${questionId}`).closest('.question-container');
         const options = container.querySelectorAll('.option');
 
         // For single-choice, remove 'selected' from all, then add to the clicked one.
