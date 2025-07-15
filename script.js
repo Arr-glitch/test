@@ -257,8 +257,8 @@ class InteractiveBook {
         // After rendering, check if the chapter has already been checked and disable the button
         const chapterAlreadyChecked = chapter.questions.every((q, i) => {
             const questionId = `q_${this.currentChapter}_${i}`;
-            // A question is considered 'answered' if its entry exists in userAnswers
-            return this.userAnswers[questionId] !== undefined; 
+            // A question is considered 'answered' if its entry exists in userAnswers AND has an isCorrect status
+            return this.userAnswers[questionId] !== undefined && this.userAnswers[questionId].isCorrect !== undefined; 
         });
 
         if (chapterAlreadyChecked) {
@@ -285,6 +285,7 @@ class InteractiveBook {
         const questionId = `q_${chapterIndex}_${questionIndex}`;
         const userAnswerData = this.userAnswers[questionId]; // Get the stored answer data
         const userAnswer = userAnswerData ? userAnswerData.answer : undefined; // Extract the answer value
+        const isQuestionChecked = userAnswerData && userAnswerData.isCorrect !== undefined; // True if question has been checked
 
         let questionHtml = '';
 
@@ -295,10 +296,10 @@ class InteractiveBook {
                         <div class="question">${question.question}</div>
                         <div class="options">
                             ${question.options.map((option, i) =>
-                                `<div class="option"
+                                `<div class="option ${userAnswer === i && !isQuestionChecked ? 'selected' : ''}"
                                       data-option-index="${i}"
                                       onclick="book.selectOption('${questionId}', ${i})"
-                                      ${userAnswerData ? 'style="pointer-events: none;"' : ''}>
+                                      ${isQuestionChecked ? 'style="pointer-events: none;"' : ''}>
                                     ${option}
                                 </div>`
                             ).join('')}
@@ -314,7 +315,7 @@ class InteractiveBook {
                         <div class="question">${question.question}</div>
                         <input type="text" id="input_${questionId}" placeholder="Type your answer here..."
                                value="${userAnswer !== undefined ? userAnswer : ''}"
-                               ${userAnswerData ? 'disabled' : ''}>
+                               ${isQuestionChecked ? 'disabled' : ''}>
                         <div class="feedback" id="feedback_${questionId}"></div>
                     </div>
                 `;
@@ -329,13 +330,13 @@ class InteractiveBook {
                     <div class="question-container">
                         <div class="question">${question.question}</div>
                         <div class="drag-drop" id="dragdrop_${questionId}">
-                            <div class="drag-items" ${userAnswerData ? 'style="pointer-events: none;"' : ''}>
+                            <div class="drag-items" ${isQuestionChecked ? 'style="pointer-events: none;"' : ''}>
                                 ${itemsToDisplay.map((item, i) =>
-                                    // Only render if the item hasn't been dropped
-                                    dropZoneContent.includes(item) ? '' : `<div class="drag-item" draggable="true" data-item="${item}">${item}</div>`
+                                    // Only render if the item hasn't been dropped or if the question hasn't been checked
+                                    (dropZoneContent.includes(item) && isQuestionChecked) ? '' : `<div class="drag-item" draggable="true" data-item="${item}">${item}</div>`
                                 ).join('')}
                             </div>
-                            <div class="drop-zones" ${userAnswerData ? 'style="pointer-events: none;"' : ''}>
+                            <div class="drop-zones" ${isQuestionChecked ? 'style="pointer-events: none;"' : ''}>
                                 ${dropZoneContent.map((content, i) =>
                                     `<div class="drop-zone ${content !== 'Drop here' ? 'filled' : ''}" data-position="${i}">
                                         ${content}
@@ -354,10 +355,10 @@ class InteractiveBook {
                         <div class="question">${question.question}</div>
                         <div class="options">
                             ${question.options.map((option, i) =>
-                                `<div class="option"
+                                `<div class="option ${userAnswer === i && !isQuestionChecked ? 'selected' : ''}"
                                       data-option-index="${i}"
                                       onclick="book.selectOption('${questionId}', ${i})"
-                                      ${userAnswerData ? 'style="pointer-events: none;"' : ''}>
+                                      ${isQuestionChecked ? 'style="pointer-events: none;"' : ''}>
                                     ${option}
                                 </div>`
                             ).join('')}
@@ -380,18 +381,17 @@ class InteractiveBook {
      */
     checkCurrentChapterAnswers() {
         const chapter = this.chapters[this.currentChapter];
-        let allQuestionsAttempted = true; // Flag to ensure all questions in the chapter have an attempt
+        let allQuestionsAttemptedInChapter = true; // Flag to ensure all questions in the chapter have an attempt
 
         chapter.questions.forEach((q, i) => {
             const questionId = `q_${this.currentChapter}_${i}`;
             const feedbackElement = document.getElementById(`feedback_${questionId}`);
             let userAnswer;
             let isCorrect;
-            let questionAttempted = true; // Flag for individual question attempt
+            let currentQuestionAttempted = true; // Flag for individual question attempt in this check
 
-            // Skip if already answered and stored (userAnswers[questionId] exists)
-            if (this.userAnswers[questionId] !== undefined && this.userAnswers[questionId].isCorrect !== undefined) {
-                // If it's already been checked and stored, just re-apply feedback
+            // If question has already been checked, skip re-evaluation but re-apply feedback
+            if (this.userAnswers[questionId] && this.userAnswers[questionId].isCorrect !== undefined) {
                 this.applyFeedbackForQuestion(questionId, q, this.userAnswers[questionId].answer, this.userAnswers[questionId].isCorrect);
                 return; 
             }
@@ -403,28 +403,10 @@ class InteractiveBook {
 
                 if (userAnswer === undefined) {
                     feedbackElement.innerHTML = '<div class="feedback incorrect">Please select an answer.</div>';
-                    questionAttempted = false;
+                    currentQuestionAttempted = false;
                 } else {
                     isCorrect = (Array.isArray(q.correct) && q.correct.includes(userAnswer)) || (!Array.isArray(q.correct) && userAnswer === q.correct);
-                    
-                    const options = container.querySelectorAll('.option');
-                    options.forEach((option, index) => {
-                        option.classList.remove('selected');
-                        if (Array.isArray(q.correct)) {
-                            if (q.correct.includes(index)) {
-                                option.classList.add('correct');
-                            } else if (index === userAnswer && !isCorrect) {
-                                option.classList.add('incorrect');
-                            }
-                        } else {
-                            if (index === q.correct) {
-                                option.classList.add('correct');
-                            } else if (index === userAnswer && !isCorrect) {
-                                option.classList.add('incorrect');
-                            }
-                        }
-                        option.style.pointerEvents = 'none'; // Disable interaction
-                    });
+                    // Store the answer and its correctness
                     this.userAnswers[questionId] = { answer: userAnswer, isCorrect: isCorrect };
                 }
 
@@ -433,10 +415,10 @@ class InteractiveBook {
                 userAnswer = inputElement.value.trim();
                 if (!userAnswer) {
                     feedbackElement.innerHTML = '<div class="feedback incorrect">Please enter an answer.</div>';
-                    questionAttempted = false;
+                    currentQuestionAttempted = false;
                 } else {
                     isCorrect = (Array.isArray(q.correct) && q.correct.map(s => s.toLowerCase()).includes(userAnswer.toLowerCase())) || (!Array.isArray(q.correct) && userAnswer.toLowerCase() === q.correct.toLowerCase());
-                    inputElement.disabled = true; // Disable input field
+                    // Store the answer and its correctness
                     this.userAnswers[questionId] = { answer: userAnswer, isCorrect: isCorrect };
                 }
 
@@ -446,47 +428,33 @@ class InteractiveBook {
                 
                 if (currentDropZoneContent.some(text => text === 'Drop here' || text === '')) {
                     feedbackElement.innerHTML = '<div class="feedback incorrect">Please fill all positions.</div>';
-                    questionAttempted = false;
+                    currentQuestionAttempted = false;
                 } else {
                     isCorrect = JSON.stringify(currentDropZoneContent) === JSON.stringify(q.correct);
-                    
-                    dropZones.forEach((zone, index) => {
-                        if (zone.textContent.trim() === q.correct[index]) {
-                            zone.style.backgroundColor = '#c6f6d5';
-                            zone.style.borderColor = '#48bb78';
-                        } else {
-                            zone.style.backgroundColor = '#fed7d7';
-                            zone.style.borderColor = '#f56565';
-                        }
-                        zone.style.pointerEvents = 'none';
-                    });
-                    const dragItemsContainer = document.querySelector(`#dragdrop_${questionId} .drag-items`);
-                    if (dragItemsContainer) {
-                        dragItemsContainer.style.pointerEvents = 'none';
-                    }
-                    this.userAnswers[questionId] = { answer: { dropZones: currentDropZoneContent, droppedItems: [] }, isCorrect: isCorrect }; // Store dropped items and mark remaining as empty
+                    // Store the answer and its correctness (including dropped items state for re-render)
+                    this.userAnswers[questionId] = { answer: { dropZones: currentDropZoneContent, droppedItems: [] }, isCorrect: isCorrect }; 
                 }
             }
 
-            // If question was not attempted in this check, set overall flag to false
-            if (!questionAttempted) {
-                allQuestionsAttempted = false;
+            // If any question in the chapter was not attempted in this check, set overall flag to false
+            if (!currentQuestionAttempted) {
+                allQuestionsAttemptedInChapter = false;
             } else {
-                // Common feedback and confetti for newly checked questions
+                // Apply feedback and confetti for newly checked questions
                 this.applyFeedbackForQuestion(questionId, q, userAnswer, isCorrect);
                 if (isCorrect) showConfetti();
             }
         });
 
         // After all questions in the chapter are processed, disable the button if all were attempted
-        if (allQuestionsAttempted) {
+        if (allQuestionsAttemptedInChapter) {
              document.getElementById('checkChapterBtn').disabled = true;
+             this.showCustomMessage('Chapter answers checked!', 'success');
         } else {
             this.showCustomMessage('Please answer all questions in the chapter before checking!', 'info');
         }
-        this.updateStats();
-        this.saveProgress();
-        // checkCompletionAndShowScore will be called by the dedicated "Finish All Questions" button
+        this.updateStats(); // Update global stats based on all changes
+        this.saveProgress(); // Save progress after checking the chapter
     }
 
     /**
@@ -507,13 +475,13 @@ class InteractiveBook {
             </div>
         `;
 
-        // Disable interaction elements
+        // Disable interaction elements and apply correct/incorrect styling
         if (question.type === 'multiple-choice' || question.type === 'reading-passage') {
             const container = feedbackElement.closest('.question-container');
             const options = container.querySelectorAll('.option');
             options.forEach(option => {
-                option.style.pointerEvents = 'none';
-                // Also re-apply correct/incorrect classes based on the stored state
+                option.style.pointerEvents = 'none'; // Disable interaction
+                option.classList.remove('selected'); // Remove any temporary selection
                 const optionIndex = parseInt(option.dataset.optionIndex);
                 if (isCorrect && (optionIndex === question.correct || (Array.isArray(question.correct) && question.correct.includes(optionIndex)))) {
                     option.classList.add('correct');
@@ -523,13 +491,14 @@ class InteractiveBook {
             });
         } else if (question.type === 'fill-in-blank') {
             const inputElement = document.getElementById(`input_${questionId}`);
-            if (inputElement) inputElement.disabled = true;
+            if (inputElement) inputElement.disabled = true; // Disable input
         } else if (question.type === 'drag-drop') {
             const dropZones = document.querySelectorAll(`#dragdrop_${questionId} .drop-zone`);
             const dragItemsContainer = document.querySelector(`#dragdrop_${questionId} .drag-items`);
+            
             dropZones.forEach((zone, index) => {
-                zone.style.pointerEvents = 'none';
-                // Re-apply correct/incorrect background
+                zone.style.pointerEvents = 'none'; // Disable dropping
+                // Re-apply correct/incorrect background based on the stored answer
                 if (userAnswer && userAnswer.dropZones && userAnswer.dropZones[index] === question.correct[index]) {
                     zone.style.backgroundColor = '#c6f6d5';
                     zone.style.borderColor = '#48bb78';
@@ -538,7 +507,7 @@ class InteractiveBook {
                     zone.style.borderColor = '#f56565';
                 }
             });
-            if (dragItemsContainer) dragItemsContainer.style.pointerEvents = 'none';
+            if (dragItemsContainer) dragItemsContainer.style.pointerEvents = 'none'; // Disable dragging
         }
     }
 
@@ -555,10 +524,24 @@ class InteractiveBook {
             const questionId = `q_${this.currentChapter}_${i}`;
             const userAnswerData = this.userAnswers[questionId]; // Get the stored answer data
             
-            if (userAnswerData !== undefined) {
-                const userAnswer = userAnswerData.answer;
-                const isCorrect = userAnswerData.isCorrect;
-                this.applyFeedbackForQuestion(questionId, q, userAnswer, isCorrect);
+            if (userAnswerData && userAnswerData.isCorrect !== undefined) { // Check if the question has been checked
+                this.applyFeedbackForQuestion(questionId, q, userAnswerData.answer, userAnswerData.isCorrect);
+            } else if (userAnswerData && userAnswerData.answer !== undefined) { // Question attempted but not yet checked
+                // For multiple-choice/reading-passage, re-apply 'selected' class
+                if (q.type === 'multiple-choice' || q.type === 'reading-passage') {
+                    const container = document.querySelector(`#feedback_${questionId}`).closest('.question-container');
+                    const options = container.querySelectorAll('.option');
+                    options.forEach(option => {
+                        if (parseInt(option.dataset.optionIndex) === userAnswerData.answer) {
+                            option.classList.add('selected');
+                        } else {
+                            option.classList.remove('selected');
+                        }
+                    });
+                }
+                // For fill-in-blank, re-apply value (already handled by renderQuestion)
+                // For drag-drop, re-apply dropped items (already handled by renderQuestion)
+                chapterFullyAnswered = false; // This chapter is not fully checked yet
             } else {
                 chapterFullyAnswered = false; // At least one question in this chapter is not answered
             }
@@ -577,18 +560,15 @@ class InteractiveBook {
      * @param {number} optionIndex - The index of the selected option.
      */
     selectOption(questionId, optionIndex) {
-        const container = document.querySelector(`#feedback_${questionId}`).closest('.question-container');
+        const container = document.querySelector(`#feedback_${questionId}`).closest('.question-container`);
         const options = container.querySelectorAll('.option');
 
         // For single-choice, remove 'selected' from all, then add to the clicked one.
         options.forEach(option => option.classList.remove('selected'));
         options[optionIndex].classList.add('selected');
 
-        // Temporarily store the selection. It will be officially saved when "Check Chapter Answers" is clicked.
-        // We don't mark it as 'answered' in userAnswers yet, just store the current selection.
-        // This ensures that when the user navigates away and comes back, their selection is remembered
-        // even before the chapter is checked.
-        this.userAnswers[questionId] = { answer: optionIndex, isCorrect: undefined }; // isCorrect is placeholder until checked
+        // Store the selection. It will be officially saved with isCorrect status when "Check Chapter Answers" is clicked.
+        this.userAnswers[questionId] = { answer: optionIndex, isCorrect: undefined }; // isCorrect is undefined until checked
     }
 
     /**
@@ -614,16 +594,16 @@ class InteractiveBook {
         this.correctAnswersStat.textContent = this.stats.correctAnswers;
         this.accuracyStat.textContent = accuracy + '%';
         
-        // Update chapters completed based on all questions in a chapter being answered
+        // Update chapters completed based on all questions in a chapter being answered AND checked
         let completedCount = 0;
         this.chapters.forEach((chapter, chapIndex) => {
             const chapterQuestions = chapter.questions.length;
-            const answeredInChapter = chapter.questions.filter((q, qIndex) => {
+            const checkedInChapter = chapter.questions.filter((q, qIndex) => {
                 const qId = `q_${chapIndex}_${qIndex}`;
-                return this.userAnswers[qId] !== undefined;
+                return this.userAnswers[qId] !== undefined && this.userAnswers[qId].isCorrect !== undefined;
             }).length;
 
-            if (answeredInChapter === chapterQuestions && chapterQuestions > 0) {
+            if (checkedInChapter === chapterQuestions && chapterQuestions > 0) {
                 completedCount++;
             }
         });
@@ -634,7 +614,8 @@ class InteractiveBook {
 
         // Enable/disable "Finish All Questions" button
         if (this.finishAllQuestionsBtn) {
-            this.finishAllQuestionsBtn.disabled = !(attemptedQuestionsCount === this.stats.totalQuestions && this.stats.totalQuestions > 0);
+            const allQuestionsChecked = Object.values(this.userAnswers).filter(ad => ad.isCorrect !== undefined).length;
+            this.finishAllQuestionsBtn.disabled = !(allQuestionsChecked === this.stats.totalQuestions && this.stats.totalQuestions > 0);
         }
     }
 
@@ -642,15 +623,12 @@ class InteractiveBook {
      * Checks if all questions have been answered and displays the final score modal.
      */
     checkCompletionAndShowScore() {
-        const attemptedQuestionsCount = Object.keys(this.userAnswers).length;
+        const allQuestionsChecked = Object.values(this.userAnswers).filter(ad => ad.isCorrect !== undefined).length;
 
-        // Log for debugging
-        console.log(`Attempted Questions: ${attemptedQuestionsCount}, Total Questions: ${this.stats.totalQuestions}`);
-
-        if (attemptedQuestionsCount === this.stats.totalQuestions && this.stats.totalQuestions > 0) {
+        if (allQuestionsChecked === this.stats.totalQuestions && this.stats.totalQuestions > 0) {
             this.displayFinalScore();
         } else {
-            this.showCustomMessage('Please answer all questions across all chapters before finishing!', 'info');
+            this.showCustomMessage('Please answer and check all questions across all chapters before finishing!', 'info');
         }
     }
 
@@ -670,6 +648,8 @@ class InteractiveBook {
      */
     hideFinalScoreModal() {
         this.finalScoreModal.style.display = 'none';
+        // Optionally, reset progress or navigate to a start screen here
+        // For now, it just closes the modal.
     }
 
     /**
@@ -727,20 +707,6 @@ class InteractiveBook {
             this.showCustomMessage('Could not load saved progress. Your browser might be in private mode or data is corrupted.', 'error');
         }
         return false;
-    }
-
-    /**
-     * Loads progress and then re-renders the current chapter and updates stats.
-     * Useful for a "Load Progress" button.
-     */
-    loadProgressAndRender() {
-        if (this.loadProgress()) {
-            this.showChapter(this.currentChapter, false); // Re-render current chapter without saving again
-            this.updateStats(); // Ensure stats are fully updated
-            this.showCustomMessage('Progress loaded successfully!', 'success');
-        } else {
-            this.showCustomMessage('No saved progress found!', 'info');
-        }
     }
 
     /**
@@ -1041,7 +1007,7 @@ function printChapter() {
                         .feedback.correct { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
                         .feedback.incorrect { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
                         input[type="text"] { border: 1px solid #ccc; padding: 5px; width: 80%; }
-                        .btn, .utility-buttons, .progress-bar, .score, .chapter-nav, .stats, .chapter-actions { display: none; } /* Hide interactive elements including chapter actions */
+                        .btn, .utility-buttons, .progress-bar, .score, .chapter-nav, .stats, .chapter-actions, .final-actions { display: none; } /* Hide interactive elements including chapter actions and final actions */
                         @media print {
                             body { margin: 0; padding: 10mm; }
                             .container { box-shadow: none; border-radius: 0; background: none; }
