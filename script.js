@@ -164,7 +164,7 @@ class InteractiveBook {
      */
     async loadContent() {
         try {
-            const response = await fetch('./content.json');
+            const response = await fetch('https://raw.githubusercontent.com/Arr-glitch/test/refs/heads/main/content.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
