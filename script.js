@@ -4,6 +4,10 @@
  * user interaction with questions, progress tracking,
  * and UI updates for an interactive English learning application.
  */
+
+// Configuration for final submission behavior
+const REQUIRE_ALL_QUESTIONS_CHECKED_FOR_FINAL_SUBMISSION = false; // Set to true to require all questions to be checked before final submission, false to allow submission anytime.
+
 class InteractiveBook {
     constructor() {
         this.currentChapter = 0; // Current active chapter index
@@ -467,10 +471,10 @@ class InteractiveBook {
         const feedbackElement = document.getElementById(`feedback_${questionId}`);
         if (!feedbackElement) return;
 
+        // Only show correct/incorrect, not the actual correct answer or feedback text
         feedbackElement.innerHTML = `
             <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${question.feedback}
-                ${question.type === 'drag-drop' ? `<br><strong>Correct order:</strong> ${question.correct.join(' → ')}` : ''}
+                ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}
             </div>
         `;
 
@@ -536,10 +540,18 @@ class InteractiveBook {
                         } else {
                             option.classList.remove('selected');
                         }
+                        // Ensure interactivity is enabled if not yet checked
+                        option.style.pointerEvents = 'auto'; 
                     });
+                } else if (q.type === 'fill-in-blank') {
+                    const inputElement = document.getElementById(`input_${questionId}`);
+                    if (inputElement) inputElement.disabled = false; // Ensure input is enabled
+                } else if (q.type === 'drag-drop') {
+                    const dropZones = document.querySelectorAll(`#dragdrop_${questionId} .drop-zone`);
+                    const dragItemsContainer = document.querySelector(`#dragdrop_${questionId} .drag-items`);
+                    if (dropZones) dropZones.forEach(zone => zone.style.pointerEvents = 'auto');
+                    if (dragItemsContainer) dragItemsContainer.style.pointerEvents = 'auto';
                 }
-                // For fill-in-blank, re-apply value (already handled by renderQuestion)
-                // For drag-drop, re-apply dropped items (already handled by renderQuestion)
                 chapterFullyAnswered = false; // This chapter is not fully checked yet
             } else {
                 chapterFullyAnswered = false; // At least one question in this chapter is not answered
@@ -611,10 +623,14 @@ class InteractiveBook {
         
         this.updateProgress(); // Update progress bar
 
-        // Enable/disable "Finish All Questions" button
+        // Enable/disable "Finish All Questions" button based on configuration
         if (this.finishAllQuestionsBtn) {
-            const allQuestionsChecked = Object.values(this.userAnswers).filter(ad => ad.isCorrect !== undefined).length;
-            this.finishAllQuestionsBtn.disabled = !(allQuestionsChecked === this.stats.totalQuestions && this.stats.totalQuestions > 0);
+            if (REQUIRE_ALL_QUESTIONS_CHECKED_FOR_FINAL_SUBMISSION) {
+                const allQuestionsChecked = Object.values(this.userAnswers).filter(ad => ad.isCorrect !== undefined).length;
+                this.finishAllQuestionsBtn.disabled = !(allQuestionsChecked === this.stats.totalQuestions && this.stats.totalQuestions > 0);
+            } else {
+                this.finishAllQuestionsBtn.disabled = false; // Always enabled if not required
+            }
         }
     }
 
@@ -622,12 +638,16 @@ class InteractiveBook {
      * Checks if all questions have been answered and displays the final score modal.
      */
     checkCompletionAndShowScore() {
-        const allQuestionsChecked = Object.values(this.userAnswers).filter(ad => ad.isCorrect !== undefined).length;
-
-        if (allQuestionsChecked === this.stats.totalQuestions && this.stats.totalQuestions > 0) {
-            this.displayFinalScore();
+        if (REQUIRE_ALL_QUESTIONS_CHECKED_FOR_FINAL_SUBMISSION) {
+            const allQuestionsChecked = Object.values(this.userAnswers).filter(ad => ad.isCorrect !== undefined).length;
+            if (allQuestionsChecked === this.stats.totalQuestions && this.stats.totalQuestions > 0) {
+                this.displayFinalScore();
+            } else {
+                this.showCustomMessage('Please answer and check all questions across all chapters before finishing!', 'info');
+            }
         } else {
-            this.showCustomMessage('Please answer and check all questions across all chapters before finishing!', 'info');
+            // If not required, just display the score
+            this.displayFinalScore();
         }
     }
 
